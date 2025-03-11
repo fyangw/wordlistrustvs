@@ -1,0 +1,22 @@
+[
+  {
+    "word": "hello",
+    "meaning": "你好"
+  },
+  {
+    "word": "world",
+    "meaning": "世界"
+  },
+  {
+    "word": "rust",
+    "meaning": "一门编程语言"
+  },
+  {
+    "word": "programming",
+    "meaning": "编程"
+  },
+  {
+    "word": "computer",
+    "meaning": "计算机"
+  }
+]
