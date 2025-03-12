@@ -48,22 +48,30 @@
         <button class="button" onclick="nextWord()">下一个</button>
     </div>
     <script>
-        async function loadWord() {
-            const response = await fetch('/api/word');
-            const data = await response.json();
+        let words = [];
+        let currentWordIndex = 0;
+
+        async function loadWords() {
+            const response = await fetch('/api/words');
+            words = await response.json();
+            displayCurrentWord();
+        }
+
+        function displayCurrentWord() {
             const wordDisplay = document.getElementById('wordDisplay');
+            const currentWord = words[currentWordIndex];
             wordDisplay.innerHTML = `
-                <div class="word">${data.word}</div>
-                <div class="meaning">${data.meaning}</div>
+                <div class="word">${currentWord.word}</div>
+                <div class="meaning">${currentWord.meaning}</div>
             `;
         }
 
-        async function nextWord() {
-            await fetch('/api/next', { method: 'POST' });
-            loadWord();
+        function nextWord() {
+            currentWordIndex = (currentWordIndex + 1) % words.length;
+            displayCurrentWord();
         }
 
-        loadWord();
+        loadWords();
     </script>
 </body>
 </html>
